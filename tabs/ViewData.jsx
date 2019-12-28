@@ -7,12 +7,14 @@ global.abiDecoder = abiDecoder;
 
 export default function ViewData({myData}) {
     const [blockData, setBlockData] = useState({});
+    const [valid, setValid] = useState({});
 
     const validateCertificate = () => {
+        console.log(myData);
         const ABI = require("../assets/CertificateList");
         abiDecoder.addABI(ABI);
         // console.log(myData.transaction.hash);
-        fetch('https://api-ropsten.etherscan.io/api?module=proxy&action=eth_getTransactionReceipt&txhash='+myData.transaction.hash+'&apikey=4P85C5ZDS7RHFJHFGA98CJFT49E8TP4PZA', {
+        fetch('https://api-ropsten.etherscan.io/api?module=proxy&action=eth_getTransactionReceipt&txhash=' + myData.transaction.hash + '&apikey=4P85C5ZDS7RHFJHFGA98CJFT49E8TP4PZA', {
             method: 'GET'
         })
             .then((response) => response.json())
@@ -24,13 +26,32 @@ export default function ViewData({myData}) {
                     "certificateType": log[1].value,
                     "hash": log[2].value
                 });
-
-                console.log(blockData);
+                valideteHash();
             })
             .catch((error) => {
                 console.error(error);
             });
     };
+    const valideteHash = () => {
+        const dataForHash = {
+            id: myData.id,
+            name: myData.name,
+            birthDate: myData.birthDate,
+            placeOfBirth: myData.placeOfBirth,
+            gender: myData.gender,
+            father: myData.father,
+            mother: myData.mother
+        };
+
+        const ObjectHash = require('object-hash');
+        const hash = ObjectHash(dataForHash);
+        if (hash === blockData.hash) {
+            alert("Valid");
+        } else {
+            alert("Invalid");
+        }
+    }
+
     return (
         <View style={{paddingTop: 20}}>
             <View style={styles.viewField}>
