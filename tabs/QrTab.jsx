@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Modal, StyleSheet, Text, View} from 'react-native';
 import {BarCodeScanner} from 'expo-barcode-scanner';
+import ViewData from "./ViewData";
 
 export default function QrTab() {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
+    const [certificateData, setCertificateData] = useState({});
     const [modelVisible, setModelVisible] = useState(false);
     useEffect(() => {
         (async () => {
@@ -15,7 +17,10 @@ export default function QrTab() {
 
     const handleBarCodeScanned = ({type, data}) => {
         setScanned(true);
-        setModelVisible(true)
+        setModelVisible(true);
+        const obj = JSON.parse(data);
+        setCertificateData(obj);
+        console.log(certificateData)
     };
 
     if (hasPermission === null) {
@@ -43,11 +48,12 @@ export default function QrTab() {
             <Modal animationType={"slide"} transparent={false}
                    visible={modelVisible}>
                 <View style={styles.modal}>
-                    <Text style={styles.text}>Modal is open!</Text>
-                    <Button title="Click To Close Modal" onPress={() => {
+                    <Button title="close" onPress={() => {
                         setModelVisible(false)
                         setScanned(false);
+                        setCertificateData({});
                     }}/>
+                    <ViewData myData={certificateData}/>
                 </View>
             </Modal>
         </View>
@@ -57,9 +63,8 @@ export default function QrTab() {
 const styles = StyleSheet.create({
     modal: {
         flex: 1,
-        alignItems: 'center',
-        backgroundColor: '#a0a2be',
-        padding: 100
+        backgroundColor: '#e4eafb',
+        padding: 50
     },
     text: {
         color: '#000000',
