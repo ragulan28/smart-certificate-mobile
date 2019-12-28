@@ -1,0 +1,97 @@
+[
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "certificateCount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "certificates",
+    "outputs": [
+      {
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "name": "certificateType",
+        "type": "uint256"
+      },
+      {
+        "name": "hash",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "certificateType",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "hash",
+        "type": "string"
+      }
+    ],
+    "name": "GetCertificate",
+    "type": "event"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_certificateType",
+        "type": "uint256"
+      },
+      {
+        "name": "_hash",
+        "type": "string"
+      }
+    ],
+    "name": "createCertificate",
+    "outputs": [],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "id",
+        "type": "uint256"
+      }
+    ],
+    "name": "getById",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

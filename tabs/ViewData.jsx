@@ -1,11 +1,38 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {Button, StyleSheet, Text, View} from 'react-native';
+import abiDecoder from 'abi-decoder'
+
+global.abiDecoder = abiDecoder;
 
 
 export default function ViewData({myData}) {
+    const [blockData, setBlockData] = useState({});
 
+    const validateCertificate = () => {
+        const ABI = require("../assets/CertificateList");
+        abiDecoder.addABI(ABI);
+        // console.log(myData.transaction.hash);
+        fetch('https://api-ropsten.etherscan.io/api?module=proxy&action=eth_getTransactionReceipt&txhash=0xff5f8c636f4831e585497d5f6fc09fd61c4ecfa4700dd6165506a12061e5258a&apikey=4P85C5ZDS7RHFJHFGA98CJFT49E8TP4PZA', {
+            method: 'GET'
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                // console.log(responseJson.result);
+                const log = abiDecoder.decodeLogs(responseJson.result.logs)[0].events;
+                setBlockData({
+                    "id": log[0].value,
+                    "certificateType": log[1].value,
+                    "hash": log[2].value
+                });
+
+                console.log(blockData);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
     return (
-        <View style={{paddingTop:20}}>
+        <View style={{paddingTop: 20}}>
             <View style={styles.viewField}>
                 <Text style={styles.field}>
                     <Text style={styles.title}>Name</Text> : {myData.name}
@@ -36,7 +63,7 @@ export default function ViewData({myData}) {
                     <Text style={styles.title}>Mother's name</Text> : {myData.mother.name}
                 </Text>
             </View>
-
+            <Button title={'Validate'} onPress={validateCertificate}/>
         </View>
 
 
