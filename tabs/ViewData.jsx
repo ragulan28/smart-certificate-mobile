@@ -12,7 +12,7 @@ export default function ViewData({myData}) {
         const ABI = require("../assets/CertificateList");
         abiDecoder.addABI(ABI);
         // console.log(myData.transaction.hash);
-        fetch('https://api-ropsten.etherscan.io/api?module=proxy&action=eth_getTransactionReceipt&txhash=0xff5f8c636f4831e585497d5f6fc09fd61c4ecfa4700dd6165506a12061e5258a&apikey=4P85C5ZDS7RHFJHFGA98CJFT49E8TP4PZA', {
+        fetch('https://api-ropsten.etherscan.io/api?module=proxy&action=eth_getTransactionReceipt&txhash='+myData.transaction.hash+'&apikey=4P85C5ZDS7RHFJHFGA98CJFT49E8TP4PZA', {
             method: 'GET'
         })
             .then((response) => response.json())
