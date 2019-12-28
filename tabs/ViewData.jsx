@@ -10,7 +10,6 @@ export default function ViewData({myData}) {
     const [valid, setValid] = useState({});
 
     const validateCertificate = () => {
-        console.log(myData);
         const ABI = require("../assets/CertificateList");
         abiDecoder.addABI(ABI);
         // console.log(myData.transaction.hash);
@@ -42,9 +41,9 @@ export default function ViewData({myData}) {
             father: myData.father,
             mother: myData.mother
         };
-
         const ObjectHash = require('object-hash');
-        const hash = ObjectHash(dataForHash);
+        const hash = ObjectHash(JSON.stringify(dataForHash));
+        console.log(JSON.stringify(dataForHash));
         if (hash === blockData.hash) {
             alert("Valid");
         } else {
