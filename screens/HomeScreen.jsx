@@ -4,7 +4,6 @@ import HomeTab from "../tabs/HomeTab";
 import QrTab from "../tabs/QrTab";
 import ProfileTab from "../tabs/ProfileTab";
 import {BottomNavigation} from 'react-native-paper';
-import {FontAwesome5} from "@expo/vector-icons";
 
 class HomeScreen extends Component {
     state = {
@@ -22,9 +21,7 @@ class HomeScreen extends Component {
     });
 
     _handleIndexChange = index => this.setState({index});
-    renderIcon = icon => ({isActive}) => (
-        <FontAwesome5 size={24} color="white" name={icon}/>
-    );
+
 
     render() {
         return (

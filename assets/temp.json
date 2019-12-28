@@ -1,0 +1,25 @@
+{
+  "id": 35,
+  "name": "ragulan",
+  "birthDate": "1994-08-28",
+  "placeOfBirth": "Anuradhapura",
+  "gender": "male",
+  "father": {
+    "id": 1,
+    "name": "adham",
+    "birthDate": "1000-01-01",
+    "placeOfBirth": "non",
+    "gender": "male"
+  },
+  "mother": {
+    "id": 2,
+    "name": "eval",
+    "birthDate": "1000-01-01",
+    "placeOfBirth": "non",
+    "gender": "female"
+  },
+  "transaction": {
+    "id": 36,
+    "hash": "0xff5f8c636f4831e585497d5f6fc09fd61c4ecfa4700dd6165506a12061e5258a"
+  }
+}
