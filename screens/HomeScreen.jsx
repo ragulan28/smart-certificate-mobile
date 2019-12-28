@@ -20,10 +20,12 @@ class HomeScreen extends Component {
         scan: QrTab,
         profile: ProfileTab,
     });
+
     _handleIndexChange = index => this.setState({index});
-    renderIcon = icon => ({ isActive }) => (
-        <FontAwesome5 size={24} color="white" name={icon} />
-    )
+    renderIcon = icon => ({isActive}) => (
+        <FontAwesome5 size={24} color="white" name={icon}/>
+    );
+
     render() {
         return (
             <BottomNavigation
