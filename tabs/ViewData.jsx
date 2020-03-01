@@ -26,6 +26,7 @@ export default function ViewData({myData}) {
                     "hash": log[2].value
                 });
                 valideteHash();
+                valideteHash();
             })
             .catch((error) => {
                 console.error(error);
